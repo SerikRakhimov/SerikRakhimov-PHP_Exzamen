@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Translate-Online'),
+    'name' => env('APP_NAME', 'Translate'),
 
     /*
     |--------------------------------------------------------------------------

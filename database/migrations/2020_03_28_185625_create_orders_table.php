@@ -17,10 +17,12 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('language')->default("");
             $table->text('input');
+            $table->string('file_input')->default("");
+            $table->boolean('translated')->default(false);
             $table->text('output');
+            $table->string('file_output')->default("");
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

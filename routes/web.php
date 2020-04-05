@@ -31,35 +31,73 @@ Route::get('/', function () {
         $user->save();
     }
     if (Auth::check()) {
-        return view('welcome');
+        return redirect()->route('order.index_job_user');
     } else {
         return redirect()->route('login');
     }
-});
+})
+    ->name('/');
 
 
 Route::get('/order/create', 'OrderController@create')
     ->name('order.create')
     ->middleware('auth');
-Route::get('/order/index', 'OrderController@index')
-    ->name('order.index')
+
+Route::get('/order/index_job_user', 'OrderController@index_job_user')
+    ->name('order.index_job_user')
     ->middleware('auth');
-Route::get('/order/{order}', 'OrderController@show')
-    ->name('order.show')
+
+Route::get('/order/index_archive_user', 'OrderController@index_archive_user')
+    ->name('order.index_archive_user')
     ->middleware('auth');
+
+Route::get('/order/index_job_admin', 'OrderController@index_job_admin')
+    ->name('order.index_job_admin')
+    ->middleware('auth');
+
+Route::get('/order/index_archive_admin', 'OrderController@index_archive_admin')
+    ->name('order.index_archive_admin')
+    ->middleware('auth');
+
+Route::get('/order/job_user/{order}', 'OrderController@show_job_user')
+    ->name('order.show_job_user')
+    ->middleware('auth');
+
+Route::get('/order/archive_user/{order}', 'OrderController@show_archive_user')
+    ->name('order.show_archive_user')
+    ->middleware('auth');
+
+Route::get('/order/job_admin/{order}', 'OrderController@show_job_admin')
+    ->name('order.show_job_admin')
+    ->middleware('auth');
+
+Route::get('/order/archive_admin/{order}', 'OrderController@show_archive_admin')
+    ->name('order.show_archive_admin')
+    ->middleware('auth');
+
 Route::post('/order/store', 'OrderController@store')
     ->name('order.store')
     ->middleware('auth');
-Route::get('/order/{order}/edit', 'OrderController@edit')
-    ->name('order.edit')
+
+Route::get('/order/edit_user/{order}', 'OrderController@edit_user')
+    ->name('order.edit_user')
     ->middleware('auth');
-Route::put('/order/{order}', 'OrderController@update')
-    ->name('order.update')
+
+Route::get('/order/edit_admin/{order}', 'OrderController@edit_admin')
+    ->name('order.edit_admin')
     ->middleware('auth');
+
+Route::put('/order/edit_user/{order}', 'OrderController@update_user')
+    ->name('order.update_user')
+    ->middleware('auth');
+
+Route::put('/order/edit_admin/{order}', 'OrderController@update_admin')
+    ->name('order.update_admin')
+    ->middleware('auth');
+
 Route::delete('/order/{order}', 'OrderController@delete')
     ->name('order.delete')
     ->middleware('auth');
-
 
 
 Auth::routes();
